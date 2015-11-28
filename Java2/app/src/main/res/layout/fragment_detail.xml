@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ravenmargret.java2project1.DetailFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dayTextView"
+        android:layout_marginLeft="10dp"
+        android:text="Day"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/forecastTextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Forecast"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/metricForecastTextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Metric Forecast"/>
+
+</LinearLayout>

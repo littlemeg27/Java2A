@@ -1,37 +1,53 @@
+/**
+ * Created by Brenna Pavlinchak on 11/27/15.
+ */
+
 package com.example.ravenmargret.java2project1;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MasterActivity extends ActionBarActivity {
+public class MasterActivity extends ActionBarActivity implements MasterFragment.OnFragmentInteractionListener
+{
+    FragmentManager manager;
+    final String TAG = "API TEST";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master);
+
+        manager = getFragmentManager();
+
+        MasterFragment masterFragment = new MasterFragment();
+        showMasterFragment(masterFragment);
+    }
+
+    private void showMasterFragment(Fragment masterFrag)
+    {
+        manager.beginTransaction().add(R.id.container, masterFrag).commit();
+    }
+
+    private void showDetailFragment(Fragment detailFrag)
+    {
+        manager.beginTransaction().replace(R.id.container2, detailFrag).commit();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_master, menu);
-        return true;
-    }
+    public void onFragmentInteraction(Song songObject)
+    {
+        DetailFragment detailFragment = new DetailFragment();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        Bundle args = new Bundle();
+        args.putSerializable(DetailFragment.WEATHERKEY, songObject);
+        detailFragment.setArguments(args);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        showDetailFragment(detailFragment);
     }
 }
