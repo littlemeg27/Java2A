@@ -24,21 +24,21 @@ import java.util.ArrayList;
 public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
 {
     final String TAG = "API DEMO AsyncTask";
-    ArrayList<Song> weatherForecast = new ArrayList<Song>();
+    ArrayList<Song> concertList = new ArrayList<Song>();
     Context mContext;
     ProgressDialog dialog;
-    WeatherDataReceiver mReceiver;
+    SongDataReceiver mReceiver;
 
-    public SongTask(Context mContext, WeatherDataReceiver _receiver)
+    public SongTask(Context mContext, SongDataReceiver _receiver)
     {
         this.mContext = mContext;
         dialog = new ProgressDialog(mContext);
         mReceiver = _receiver;
     }
 
-    public interface WeatherDataReceiver
+    public interface SongDataReceiver
     {
-        void receiveData(ArrayList<Song> weatherForecast);
+        void receiveData(ArrayList<Song> concertList);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
     }
 
     @Override
-    protected ArrayList<Weather> doInBackground(String... params)
+    protected ArrayList<Song> doInBackground(String... params)
     {
         String result = "";
 
@@ -67,9 +67,6 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
 
             result = IOUtils.toString(is);
             is.close();
-            //Log.e("Testing",result);
-            //Saving loading goes here
-
         }
         catch (MalformedURLException e)
         {
@@ -82,17 +79,16 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
 
         try
         {
-            ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
+            ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo network = manager.getActiveNetworkInfo();
             if(network !=null && network.isConnected())
             {
-                WeatherUtil saveData = new WeatherUtil();
-                saveData.save(weatherForecast, mContext);
+                SongUtil saveData = new SongUtil();
+                saveData.save(concertList, mContext);
             }
             else
             {
-                //Move connect to Task
-                WeatherUtil loadData = new WeatherUtil();
+                SongUtil loadData = new SongUtil();
                 loadData.load(mContext);
             }
         }
@@ -103,8 +99,8 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
 
         try
         {
-            JSONObject weather = new JSONObject(result);
-            JSONObject forecastObject = weather.getJSONObject("forecast");
+            JSONObject song = new JSONObject(result);
+            JSONObject forecastObject = song.getJSONObject("forecast");
             JSONObject weatherObject = forecastObject.getJSONObject("txt_forecast");
 
             JSONArray weatherArray = weatherObject.getJSONArray("forecastday");
@@ -121,16 +117,15 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
                 forecastMetric = insideObject.getString("fcttext_metric");
                 Log.e("Weather data", forecast);
 
-                weatherForecast.add(new Weather(day, forecast, forecastMetric));
+                concertList.add(new Song(, forecast, forecastMetric));
             }
 
         }
         catch (JSONException e)
         {
-            //Toast toast = Toast.makeText(MainActivity.this, "Something Happened", Toast.LENGTH_SHORT);
-            //toast.show();
+
         }
-        return weatherForecast;
+        return concertList;
     }
 
 
@@ -143,11 +138,11 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
 
 
     @Override
-    protected void onPostExecute(ArrayList<Weather> weatherAPI)
+    protected void onPostExecute(ArrayList<Song> weatherAPI)
     {
         super.onPostExecute(weatherAPI);
 
         dialog.cancel();
-        mReceiver.receiveData(weatherForecast);
+        mReceiver.receiveData(concertList);
     }
 }
