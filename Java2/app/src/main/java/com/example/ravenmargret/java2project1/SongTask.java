@@ -108,16 +108,17 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
             for (int i = 0; i < weatherArray.length(); i++)
             {
                 JSONObject insideObject = weatherArray.getJSONObject(i);
-                String day;
-                String forecast;
-                String forecastMetric;
+                String type;
+                String artist;
+                String uri;
+                String date; //Inside of Start object
+                String location; //Inside of location object
 
-                day = insideObject.getString("title");
-                forecast = insideObject.getString("fcttext");
-                forecastMetric = insideObject.getString("fcttext_metric");
-                Log.e("Weather data", forecast);
+                type = insideObject.getString("type");
+                artist = insideObject.getString("displayName");
+                uri = insideObject.getString("uri");
 
-                concertList.add(new Song(, forecast, forecastMetric));
+                concertList.add(new Song(type, artist, uri, date, location));
             }
 
         }
