@@ -9,6 +9,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -87,11 +88,13 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
             {
                 SongUtil saveData = new SongUtil();
                 saveData.save(concertList, mContext);
+                Toast.makeText(mContext, "Network connection, saving API Data", Toast.LENGTH_LONG).show();
             }
             else
             {
                 SongUtil loadData = new SongUtil();
                 loadData.load(mContext);
+                Toast.makeText(mContext, "No network connection, loading API Data", Toast.LENGTH_LONG).show();
             }
         }
         catch (Exception e)
@@ -136,8 +139,6 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
         }
         return concertList;
     }
-
-
 
     @Override
     protected void onProgressUpdate(Void... values)

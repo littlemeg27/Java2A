@@ -72,8 +72,6 @@ public class MasterFragment extends ListFragment implements SongTask.SongDataRec
 
         if (null != mListener)
         {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
             Song s = (Song)getListAdapter().getItem(position);
             mListener.onFragmentInteraction(s);
         }

@@ -14,14 +14,14 @@ import java.util.ArrayList;
 
 public class SongUtil
 {
-    public static void save(ArrayList<Song> weathers, Context context)
+    public static void save(ArrayList<Song> songs, Context context)
     {
 
         try
         {
             FileOutputStream fileOut = context.openFileOutput("test.txt", Context.MODE_PRIVATE);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(weathers);
+            objectOut.writeObject(songs);
             objectOut.close();
         }
         catch (Exception e)
