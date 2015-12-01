@@ -11,13 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DetailFragment extends Fragment
 {
-    public static final String WEATHERKEY = "theWeatherKey";
+    public static final String SONGKEY = "songKey";
 
     public DetailFragment()
     {
@@ -42,19 +38,25 @@ public class DetailFragment extends Fragment
         if (args != null)
         {
             // Set article based on argument passed in
-            updateText((Weather)args.getSerializable(WEATHERKEY));
+            updateText((Song)args.getSerializable(SONGKEY));
         }
     }
 
-    public void updateText(Weather weatherObject)
+    public void updateText(Song songObject)
     {
-        TextView dayText = (TextView) getActivity().findViewById(R.id.dayTextView);
-        dayText.setText(weatherObject.getmDay());
+        TextView typeText = (TextView) getActivity().findViewById(R.id.typeTextView);
+        typeText.setText(songObject.getmType());
 
-        TextView forecastTextView = (TextView) getActivity().findViewById(R.id.forecastTextView);
-        forecastTextView.setText(weatherObject.getmForcast());
+        TextView artistTextView = (TextView) getActivity().findViewById(R.id.artistTextView);
+        artistTextView.setText(songObject.getmArtist());
 
-        TextView metricForecastTextView = (TextView) getActivity().findViewById(R.id.metricForecastTextView);
-        metricForecastTextView.setText(weatherObject.getmForcastMetric());
+        TextView uriTextView = (TextView) getActivity().findViewById(R.id.uriTextView);
+        uriTextView.setText(songObject.getmURI());
+
+        TextView dateTextView = (TextView) getActivity().findViewById(R.id.dateTextView);
+        dateTextView.setText(songObject.getmDate());
+
+        TextView metricForecastTextView = (TextView) getActivity().findViewById(R.id.locationTextView);
+        metricForecastTextView.setText(songObject.getmLocation());
     }
 }

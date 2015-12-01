@@ -42,7 +42,7 @@ public class MasterActivity extends ActionBarActivity implements MasterFragment.
         DetailFragment detailFragment = new DetailFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable(DetailFragment.WEATHERKEY, songObject);
+        args.putSerializable(DetailFragment.SONGKEY, songObject);
         detailFragment.setArguments(args);
 
         showDetailFragment(detailFragment);

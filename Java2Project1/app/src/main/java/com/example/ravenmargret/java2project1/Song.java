@@ -26,7 +26,7 @@ public class Song implements Serializable
 
     public String getmType() {return mType;}
     public String getmArtist() {return mArtist;}
-    public String getmURIt() {return mURI;}
+    public String getmURI() {return mURI;}
     public String getmDate() {return mDate;}
     public String getmLocation() {return mLocation;}
 

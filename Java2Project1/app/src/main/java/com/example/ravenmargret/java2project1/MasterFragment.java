@@ -15,26 +15,17 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 
-public class MasterFragment extends ListFragment implements SongTask.WeatherDataReceiver
+public class MasterFragment extends ListFragment implements SongTask.SongDataReceiver
 {
     ArrayList<Song> mObjects;
     private OnFragmentInteractionListener mListener;
-    Spinner citySpinner;
-    ArrayAdapter<String> spinnerAdapter;
     public static String fileName = "api.ser";
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-
     @Override
-    public void receiveData(ArrayList<Song> weatherForecast)
+    public void receiveData(ArrayList<Song> songList)
     {
-        //Get in weather data
-        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, weatherForecast));
+        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, songList));
     }
-
 
     @Override
     public void onAttach(Activity activity)
@@ -51,8 +42,6 @@ public class MasterFragment extends ListFragment implements SongTask.WeatherData
         }
     }
 
-
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
@@ -61,7 +50,7 @@ public class MasterFragment extends ListFragment implements SongTask.WeatherData
         try
         {
             SongTask myTask = new SongTask(getActivity(), this);
-            myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
+            myTask.execute("http://api.songkick.com/api/3.0/metro_areas/13579/calendar.json?apikey=lQbaqybx2HCPaqV0");
         }
         catch (Exception e)
         {
