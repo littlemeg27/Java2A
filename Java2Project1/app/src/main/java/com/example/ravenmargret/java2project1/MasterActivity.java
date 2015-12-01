@@ -6,11 +6,8 @@ package com.example.ravenmargret.java2project1;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class MasterActivity extends ActionBarActivity implements MasterFragment.OnFragmentInteractionListener
 {

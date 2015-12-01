@@ -4,29 +4,43 @@
     tools:context="com.example.ravenmargret.java2project1.DetailFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/dayTextView"
+        android:id="@+id/typeTextView"
         android:layout_marginLeft="10dp"
-        android:text="Day"/>
+        android:text="Type"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/forecastTextView"
+        android:id="@+id/artistTextView"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Forecast"/>
+        android:text="Artist"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/metricForecastTextView"
+        android:id="@+id/uriTextView"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Metric Forecast"/>
+        android:text="URI"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateTextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Date"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationTextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Location"/>
 
 </LinearLayout>

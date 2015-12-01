@@ -1,15 +1,16 @@
-package com.example.ravenmargret.java2project1;
 /**
  * Created by Brenna Pavlinchak on 11/27/15.
  */
+
+package com.example.ravenmargret.java2project1;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.util.Log;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,6 +82,7 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
         {
             ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo network = manager.getActiveNetworkInfo();
+
             if(network !=null && network.isConnected())
             {
                 SongUtil saveData = new SongUtil();
@@ -100,23 +102,29 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
         try
         {
             JSONObject song = new JSONObject(result);
-            JSONObject forecastObject = song.getJSONObject("forecast");
-            JSONObject weatherObject = forecastObject.getJSONObject("txt_forecast");
+            JSONObject resultsPageObject = song.getJSONObject("resultsPage");
+            JSONObject resultsObject = resultsPageObject.getJSONObject("results");
 
-            JSONArray weatherArray = weatherObject.getJSONArray("forecastday");
+            JSONArray eventArray = resultsObject.getJSONArray("event");
 
-            for (int i = 0; i < weatherArray.length(); i++)
+            for (int i = 0; i < eventArray.length(); i++)
             {
-                JSONObject insideObject = weatherArray.getJSONObject(i);
+                JSONObject insideObject = eventArray.getJSONObject(i);
                 String type;
                 String artist;
                 String uri;
-                String date; //Inside of Start object
-                String location; //Inside of location object
 
                 type = insideObject.getString("type");
                 artist = insideObject.getString("displayName");
                 uri = insideObject.getString("uri");
+
+                JSONObject startObject = insideObject.getJSONObject("start");
+                String date; //Inside of Start object
+                date = startObject.getString("date");
+
+                JSONObject locationObject = insideObject.getJSONObject("location");
+                String location; //Inside of location object
+                location = locationObject.getString("city");
 
                 concertList.add(new Song(type, artist, uri, date, location));
             }
