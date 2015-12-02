@@ -14,14 +14,16 @@ public class Song implements Serializable
     String mURI;
     String mDate;
     String mLocation;
+    String mEventName;
 
-    public Song(String mType, String mArtist, String mURI, String mDate, String mLocation)
+    public Song(String mType, String mArtist, String mURI, String mDate, String mLocation, String mEventName)
     {
         this.mType = mType;
         this.mArtist = mArtist;
         this.mURI = mURI;
         this.mDate = mDate;
         this.mLocation = mLocation;
+        this.mLocation = mEventName;
     }
 
     public String getmType() {return mType;}
@@ -29,12 +31,14 @@ public class Song implements Serializable
     public String getmURI() {return mURI;}
     public String getmDate() {return mDate;}
     public String getmLocation() {return mLocation;}
+    public String getmEventName() {return mEventName;}
 
     public void setmType(String mType) {this.mType = mType;}
     public void setmArtist(String mArtist) {this.mArtist = mArtist;}
     public void setmURI(String mURI) {this.mURI = mURI;}
     public void setmDate(String mDate) {this.mDate = mDate;}
-    public void setmmLocation(String mLocation) {this.mLocation = mLocation;}
+    public void setmLocation(String mLocation) {this.mLocation = mLocation;}
+    public void setmEventName(String mEventName) {this.mEventName = mEventName;}
 
     @Override
     public String toString()

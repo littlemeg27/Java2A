@@ -91,11 +91,11 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
             {
                 JSONObject insideObject = eventArray.getJSONObject(i);
                 String type;
-                String artist;
+                String eventName;
                 String uri;
 
                 type = insideObject.getString("type");
-                artist = insideObject.getString("displayName");
+                eventName = insideObject.getString("displayName");
                 uri = insideObject.getString("uri");
 
                 JSONObject startObject = insideObject.getJSONObject("start");
@@ -106,7 +106,18 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
                 String location; //Inside of location object
                 location = locationObject.getString("city");
 
-                concertList.add(new Song(type, artist, uri, date, location));
+                JSONArray performanceArray = insideObject.getJSONArray("performance");
+
+                for (int l = 0; l < performanceArray.length(); l++)
+                {
+                    JSONObject insidePerformanceObject = eventArray.getJSONObject(i);
+                    String artist;
+
+                    JSONObject artistObject = insidePerformanceObject.getJSONObject("artist");
+                    artist = artistObject.getString("displayName");
+                }
+
+                concertList.add(new Song(type, eventName, uri, date, location));
             }
 
         }
