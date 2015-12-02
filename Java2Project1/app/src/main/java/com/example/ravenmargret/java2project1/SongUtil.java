@@ -16,7 +16,6 @@ public class SongUtil
 {
     public static void save(ArrayList<Song> songs, Context context)
     {
-
         try
         {
             FileOutputStream fileOut = context.openFileOutput("test.txt", Context.MODE_PRIVATE);

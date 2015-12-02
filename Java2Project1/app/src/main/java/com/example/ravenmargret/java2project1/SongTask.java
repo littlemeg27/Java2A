@@ -81,29 +81,6 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
 
         try
         {
-            ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo network = manager.getActiveNetworkInfo();
-
-            if(network !=null && network.isConnected())
-            {
-                SongUtil saveData = new SongUtil();
-                saveData.save(concertList, mContext);
-                Toast.makeText(mContext, "Network connection, saving API Data", Toast.LENGTH_LONG).show();
-            }
-            else
-            {
-                SongUtil loadData = new SongUtil();
-                loadData.load(mContext);
-                Toast.makeText(mContext, "No network connection, loading API Data", Toast.LENGTH_LONG).show();
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        try
-        {
             JSONObject song = new JSONObject(result);
             JSONObject resultsPageObject = song.getJSONObject("resultsPage");
             JSONObject resultsObject = resultsPageObject.getJSONObject("results");
@@ -133,10 +110,35 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
             }
 
         }
+
         catch (JSONException e)
         {
-
+            e.printStackTrace();
         }
+
+        try
+        {
+            ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo network = manager.getActiveNetworkInfo();
+
+            if(network !=null && network.isConnected())
+            {
+                SongUtil saveData = new SongUtil();
+                saveData.save(concertList, mContext);
+                Toast.makeText(mContext, "Network connection, saving API Data", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                SongUtil loadData = new SongUtil();
+                loadData.load(mContext);
+                Toast.makeText(mContext, "No network connection, loading API Data", Toast.LENGTH_LONG).show();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         return concertList;
     }
 
