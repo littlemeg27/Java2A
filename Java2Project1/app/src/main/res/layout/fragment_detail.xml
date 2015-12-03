@@ -14,10 +14,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/artistTextView"
+        android:id="@+id/venueTextView"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Artist"/>
+        android:text="Venue"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -42,5 +42,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="Location"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventNameTextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Event Name"/>
 
 </LinearLayout>

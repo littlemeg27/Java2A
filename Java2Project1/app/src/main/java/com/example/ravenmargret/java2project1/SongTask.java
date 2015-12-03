@@ -9,6 +9,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
@@ -106,18 +107,11 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
                 String location; //Inside of location object
                 location = locationObject.getString("city");
 
-                JSONArray performanceArray = insideObject.getJSONArray("performance");
+                JSONObject venueObject = insideObject.getJSONObject("venue");
+                String venue; //Inside of venue object
+                venue = venueObject.getString("displayName");
 
-                for (int l = 0; l < performanceArray.length(); l++)
-                {
-                    JSONObject insidePerformanceObject = eventArray.getJSONObject(i);
-                    String artist;
-
-                    JSONObject artistObject = insidePerformanceObject.getJSONObject("artist");
-                    artist = artistObject.getString("displayName");
-                }
-
-                concertList.add(new Song(type, eventName, uri, date, location));
+                concertList.add(new Song(type, venue, uri, date, location, eventName));
             }
 
         }
@@ -132,17 +126,19 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
             ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo network = manager.getActiveNetworkInfo();
 
+            String testing = "Test";
+
             if(network !=null && network.isConnected())
             {
                 SongUtil saveData = new SongUtil();
                 saveData.save(concertList, mContext);
-                Toast.makeText(mContext, "Network connection, saving API Data", Toast.LENGTH_LONG).show();
+                Log.e("Saving Data ", testing);
             }
             else
             {
                 SongUtil loadData = new SongUtil();
-                loadData.load(mContext);
-                Toast.makeText(mContext, "No network connection, loading API Data", Toast.LENGTH_LONG).show();
+                concertList = loadData.load(mContext);
+                Log.e("Loading Data ",testing);
             }
         }
         catch (Exception e)

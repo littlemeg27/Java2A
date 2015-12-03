@@ -10,31 +10,31 @@ public class Song implements Serializable
 {
     private static final long serialVersionUID = 8736847634070552888L;
     String mType;
-    String mArtist;
+    String mVenue;
     String mURI;
     String mDate;
     String mLocation;
     String mEventName;
 
-    public Song(String mType, String mArtist, String mURI, String mDate, String mLocation, String mEventName)
+    public Song(String mType, String mVenue, String mURI, String mDate, String mLocation, String mEventName)
     {
         this.mType = mType;
-        this.mArtist = mArtist;
+        this.mVenue = mVenue;
         this.mURI = mURI;
         this.mDate = mDate;
         this.mLocation = mLocation;
-        this.mLocation = mEventName;
+        this.mEventName = mEventName;
     }
 
     public String getmType() {return mType;}
-    public String getmArtist() {return mArtist;}
+    public String getmVenue() {return mVenue;}
     public String getmURI() {return mURI;}
     public String getmDate() {return mDate;}
     public String getmLocation() {return mLocation;}
     public String getmEventName() {return mEventName;}
 
     public void setmType(String mType) {this.mType = mType;}
-    public void setmArtist(String mArtist) {this.mArtist = mArtist;}
+    public void setmArtist(String mVenue) {this.mVenue = mVenue;}
     public void setmURI(String mURI) {this.mURI = mURI;}
     public void setmDate(String mDate) {this.mDate = mDate;}
     public void setmLocation(String mLocation) {this.mLocation = mLocation;}
@@ -43,6 +43,6 @@ public class Song implements Serializable
     @Override
     public String toString()
     {
-        return mArtist;
+        return mVenue;
     }
 }

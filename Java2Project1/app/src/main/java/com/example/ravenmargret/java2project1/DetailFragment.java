@@ -20,7 +20,6 @@ public class DetailFragment extends Fragment
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container2,
                              Bundle savedInstanceState)
@@ -47,8 +46,8 @@ public class DetailFragment extends Fragment
         TextView typeText = (TextView) getActivity().findViewById(R.id.typeTextView);
         typeText.setText(songObject.getmType());
 
-        TextView artistTextView = (TextView) getActivity().findViewById(R.id.artistTextView);
-        artistTextView.setText(songObject.getmArtist());
+        TextView venueTextView = (TextView) getActivity().findViewById(R.id.venueTextView);
+        venueTextView.setText(songObject.getmVenue());
 
         TextView uriTextView = (TextView) getActivity().findViewById(R.id.uriTextView);
         uriTextView.setText(songObject.getmURI());
@@ -56,7 +55,10 @@ public class DetailFragment extends Fragment
         TextView dateTextView = (TextView) getActivity().findViewById(R.id.dateTextView);
         dateTextView.setText(songObject.getmDate());
 
-        TextView metricForecastTextView = (TextView) getActivity().findViewById(R.id.locationTextView);
-        metricForecastTextView.setText(songObject.getmLocation());
+        TextView locationTextView = (TextView) getActivity().findViewById(R.id.locationTextView);
+        locationTextView.setText(songObject.getmLocation());
+
+        TextView eventNameTextView = (TextView) getActivity().findViewById(R.id.eventNameTextView);
+        eventNameTextView.setText(songObject.getmEventName());
     }
 }
