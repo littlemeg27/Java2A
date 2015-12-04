@@ -31,6 +31,7 @@ public class SongUtil
 
     public static ArrayList<Song> load(Context context)
     {
+        //ArrayList<Song> object = new ArrayList<Song>();
         try
         {
             FileInputStream fileIn = context.openFileInput("test.txt");

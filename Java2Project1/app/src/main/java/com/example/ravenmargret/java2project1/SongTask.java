@@ -113,7 +113,6 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
 
                 concertList.add(new Song(type, venue, uri, date, location, eventName));
             }
-
         }
 
         catch (JSONException e)
