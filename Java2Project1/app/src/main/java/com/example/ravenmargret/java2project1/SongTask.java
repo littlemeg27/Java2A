@@ -137,7 +137,7 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
             {
                 SongUtil loadData = new SongUtil();
                 concertList = loadData.load(mContext);
-                Log.e("Loading Data ",testing);
+                Log.e("Loading Data ", testing);
             }
         }
         catch (Exception e)
@@ -154,11 +154,10 @@ public class SongTask extends AsyncTask<String, Void, ArrayList<Song>>
         super.onProgressUpdate(values);
     }
 
-
     @Override
-    protected void onPostExecute(ArrayList<Song> weatherAPI)
+    protected void onPostExecute(ArrayList<Song> songAPI)
     {
-        super.onPostExecute(weatherAPI);
+        super.onPostExecute(songAPI);
 
         dialog.cancel();
         mReceiver.receiveData(concertList);

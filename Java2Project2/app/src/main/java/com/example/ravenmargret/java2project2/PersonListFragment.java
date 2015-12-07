@@ -1,8 +1,8 @@
 /**
- * Created by Brenna Pavlinchak on 11/27/15.
+ * Created by Brenna Pavlinchak on 12/6/15.
  */
 
-package com.example.ravenmargret.java2project1;
+package com.example.ravenmargret.java2project2;
 
 import android.app.Activity;
 import android.app.ListFragment;
@@ -10,26 +10,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class MasterFragment extends ListFragment implements SongTask.SongDataReceiver
+public class PersonListFragment extends ListFragment
 {
     private OnFragmentInteractionListener mListener;
-    public static String fileName = "api.ser";
+    ArrayList<Form> formObject;
 
-    @Override
-    public void receiveData(ArrayList<Song> songList)
+    public PersonListFragment()
     {
-        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, songList));
+
     }
 
     @Override
     public void onAttach(Activity activity)
     {
         super.onAttach(activity);
+
         try
         {
             mListener = (OnFragmentInteractionListener) activity;
@@ -45,40 +45,36 @@ public class MasterFragment extends ListFragment implements SongTask.SongDataRec
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
-        try
+        
+        if(formObject == null)
         {
-            SongTask myTask = new SongTask(getActivity(), this);
-            myTask.execute("http://api.songkick.com/api/3.0/metro_areas/13579/calendar.json?apikey=lQbaqybx2HCPaqV0");
+            Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
         }
-        catch (Exception e)
+        else
         {
-            e.printStackTrace();
+            loadData();
         }
-    }
 
-    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-        mListener = null;
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
-
-        if (null != mListener)
-        {
-            Song s = (Song)getListAdapter().getItem(position);
-            mListener.onFragmentInteraction(s);
-        }
+        Form f = (Form) getListAdapter().getItem(position);
+        mListener.onFragmentInteraction(f);
     }
 
-    public interface OnFragmentInteractionListener
+    public void loadData()
+    {
+        formObject = FormUtil.load(getActivity());
+        ArrayAdapter<Form> formArrayAdapter = new ArrayAdapter<Form>(getActivity(), android.R.layout.simple_list_item_1, formObject);
+        setListAdapter(formArrayAdapter);
+    }
+
+    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
     {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Song songObject);
+        void onFragmentInteraction(Form formObject);
     }
 }

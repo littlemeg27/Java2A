@@ -5,6 +5,7 @@
 package com.example.ravenmargret.java2project1;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -31,7 +32,6 @@ public class SongUtil
 
     public static ArrayList<Song> load(Context context)
     {
-        //ArrayList<Song> object = new ArrayList<Song>();
         try
         {
             FileInputStream fileIn = context.openFileInput("test.txt");
