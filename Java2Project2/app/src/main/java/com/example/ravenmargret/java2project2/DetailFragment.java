@@ -63,7 +63,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener
         lastNameText.setText(object.getmLastName());
 
         TextView jobText = (TextView) getActivity().findViewById(R.id.jobTextView);
-        jobText.setText(object.getmAge());
+        jobText.setText(object.getmJob());
 
         TextView ageText = (TextView) getActivity().findViewById(R.id.ageTextView);
         ageText.setText(object.getmAge());
@@ -79,7 +79,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener
 
 //        Form form = new Form(firstName, lastName, age);
 //        FormUtil.delete(form, getActivity());
-        //Tried to add delete button, ran out of time to finish dealing with the call for it resets just isnt deleting
 
         getActivity().finish();
     }

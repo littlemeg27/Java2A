@@ -38,7 +38,7 @@ public class PersonListActivity extends Activity implements View.OnClickListener
     public void onClick(View v)
     {
         Intent nextActivity = new Intent(this, FormActivity.class);
-        startActivityForResult(nextActivity, 27272727);
+        startActivityForResult(nextActivity, 40404040);
     }
 
     @Override
@@ -56,6 +56,6 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         extras.putSerializable(DetailActivity.LISTKEY, formObject);
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtras(extras);
-        startActivityForResult(intent, 45454545);
+        startActivityForResult(intent, 80808080);
     }
 }
