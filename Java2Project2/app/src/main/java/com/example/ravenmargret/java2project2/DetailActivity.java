@@ -27,11 +27,12 @@ public class DetailActivity extends Activity
         showDetailFragment(detailFragment);
 
         Intent callingIntent = getIntent();
+        Form object = (Form)callingIntent.getSerializableExtra(LISTKEY);
+        setResult(RESULT_OK, callingIntent);
 
         Bundle args = new Bundle();
         args.putSerializable(DetailFragment.KEY, object);
         detailFragment.setArguments(args);
-
     }
 
     private void showDetailFragment(Fragment detailFrag)
@@ -39,13 +40,13 @@ public class DetailActivity extends Activity
         manager.beginTransaction().replace(R.id.container, detailFrag).commit();
     }
 
-    public void sendText()
-    {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("*/*");
-        if (intent.resolveActivity(getPackageManager()) != null)
-        {
-            startActivity(intent);
-        }
-    }
+//    public void sendText()
+//    {
+//        Intent intent = new Intent(Intent.ACTION_SEND);
+//        intent.setType("*/*");
+//        if (intent.resolveActivity(getPackageManager()) != null)
+//        {
+//            startActivity(intent);
+//        }
+//    }
 }

@@ -47,21 +47,26 @@ public class FormUtil
         return null;
     }
 
-    public static void save(Form form, Context context) //Saving one item at a time
+    public static void save(Form form, Context context)
     {
         ArrayList<Form> loadedItem = load(context);
-        if (loadedItem == null)
-        {
-            loadedItem = new ArrayList<>();
-        }
+
+            if (loadedItem == null)
+            {
+                loadedItem = new ArrayList<>();
+            }
+
         loadedItem.add(form);
         save(loadedItem, context);
     }
 
-    public static void delete(Form form, Context context) //Delete one item at a time
+    public static void delete(Form form, Context context)
     {
         ArrayList<Form> loadedItem = load(context);
 
-        loadedItem.remove(form);
+        if (loadedItem != null)
+        {
+            loadedItem.remove(form);
+        }
     }
 }

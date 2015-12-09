@@ -48,11 +48,11 @@ public class PersonListFragment extends ListFragment
         
         if(formObject == null)
         {
-            Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
+            loadData();
         }
         else
         {
-            loadData();
+            Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
         }
 
     }

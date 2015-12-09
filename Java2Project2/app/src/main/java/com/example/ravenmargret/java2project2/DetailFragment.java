@@ -74,11 +74,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener
     {
         Toast.makeText(getActivity(), "Contact Deleted", Toast.LENGTH_LONG).show();
 
-        //Form form;
-        //FormUtil.delete(form, getActivity());
-
-//        Form form = new Form(firstName, lastName, age);
-//        FormUtil.delete(form, getActivity());
+        FormUtil.delete((Form) getArguments().getSerializable(KEY), getActivity());
 
         getActivity().finish();
     }
