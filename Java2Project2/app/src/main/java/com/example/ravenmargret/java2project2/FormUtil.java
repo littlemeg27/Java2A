@@ -68,8 +68,8 @@ public class FormUtil
         if (loadedItem != null)
         {
             loadedItem.remove(form);
-            Log.e("Array list", loadedItem.size()+"size");
-            save(loadedItem, context);
+            Log.e("Array list", loadedItem.size() + "size");
+            save(form, context);
         }
     }
 }
