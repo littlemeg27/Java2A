@@ -54,7 +54,6 @@ public class PersonListFragment extends ListFragment
         {
             Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
         }
-
     }
 
     @Override
@@ -72,7 +71,7 @@ public class PersonListFragment extends ListFragment
         setListAdapter(formArrayAdapter);
     }
 
-    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
+    public interface OnFragmentInteractionListener
     {
         // TODO: Update argument type and name
         void onFragmentInteraction(Form formObject);
