@@ -5,6 +5,7 @@
 package com.example.ravenmargret.java2project2;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -67,6 +68,8 @@ public class FormUtil
         if (loadedItem != null)
         {
             loadedItem.remove(form);
+            Log.e("Array list", loadedItem.size()+"size");
+            save(loadedItem, context);
         }
     }
 }
