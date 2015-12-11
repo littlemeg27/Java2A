@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class DetailActivity extends Activity
 {
@@ -40,13 +41,19 @@ public class DetailActivity extends Activity
         manager.beginTransaction().replace(R.id.container, detailFrag).commit();
     }
 
-//    public void sendText()
-//    {
-//        Intent intent = new Intent(Intent.ACTION_SEND);
-//        intent.setType("*/*");
-//        if (intent.resolveActivity(getPackageManager()) != null)
-//        {
-//            startActivity(intent);
-//        }
-//    }
+    public void sendText(View v)
+    {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra("",);
+        intent.putExtra("",);
+        intent.putExtra("",);
+        intent.putExtra("",);
+        intent.setType("text/plain");
+
+        if (intent.resolveActivity(getPackageManager()) != null)
+        {
+            startActivity(intent);
+        }
+    }
 }
