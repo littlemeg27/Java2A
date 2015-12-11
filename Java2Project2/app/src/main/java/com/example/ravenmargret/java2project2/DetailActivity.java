@@ -41,19 +41,19 @@ public class DetailActivity extends Activity
         manager.beginTransaction().replace(R.id.container, detailFrag).commit();
     }
 
-    public void sendText(View v)
-    {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra("",);
-        intent.putExtra("",);
-        intent.putExtra("",);
-        intent.putExtra("",);
-        intent.setType("text/plain");
-
-        if (intent.resolveActivity(getPackageManager()) != null)
-        {
-            startActivity(intent);
-        }
-    }
+//    public void sendText(View v)
+//    {
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_SEND);
+//        intent.putExtra("",);
+//        intent.putExtra("",);
+//        intent.putExtra("",);
+//        intent.putExtra("",);
+//        intent.setType("text/plain");
+//
+//        if (intent.resolveActivity(getPackageManager()) != null)
+//        {
+//            startActivity(intent);
+//        }
+//    }
 }

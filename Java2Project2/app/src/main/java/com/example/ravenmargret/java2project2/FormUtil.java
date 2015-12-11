@@ -69,7 +69,7 @@ public class FormUtil
         {
             loadedItem.remove(form);
             Log.e("Array list", loadedItem.size() + "size");
-            save(form, context);
+            save(loadedItem, context);
         }
     }
 }
