@@ -32,20 +32,21 @@ public class FormUtil
 
     public static ArrayList<Form> load(Context context)
     {
+        ArrayList<Form> savedForm = new ArrayList<Form>();
         try
         {
             FileInputStream fileIn = context.openFileInput("test.txt");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-            ArrayList<Form> savedForm = (ArrayList<Form>)objectIn.readObject();
+            savedForm = (ArrayList<Form>)objectIn.readObject();
             objectIn.close();
-            return savedForm;
+
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
 
-        return null;
+        return savedForm;
     }
 
     public static void save(Form form, Context context)
@@ -61,13 +62,13 @@ public class FormUtil
         save(loadedItem, context);
     }
 
-    public static void delete(Form form, Context context)
+    public static void delete(int position, Context context)
     {
         ArrayList<Form> loadedItem = load(context);
 
         if (loadedItem != null)
         {
-            loadedItem.remove(form);
+            loadedItem.remove(position);
             Log.e("Array list", loadedItem.size() + "size");
             save(loadedItem, context);
         }

@@ -7,6 +7,7 @@ package com.example.ravenmargret.java2project2;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class DetailFragment extends Fragment implements View.OnClickListener
 {
     public static final String KEY = "PersonKey";
     Button deletePersonButton;
+    Button sendIntentButton;
 
     public DetailFragment()
     {
@@ -38,8 +42,14 @@ public class DetailFragment extends Fragment implements View.OnClickListener
     {
         super.onActivityCreated(savedInstanceState);
 
+        String test = "Button Clicked";
+
         deletePersonButton = (Button)getView().findViewById(R.id.deletePersonButton);
         deletePersonButton.setOnClickListener(this);
+
+//        sendIntentButton = (Button)getView().findViewById(R.id.sendIntentButton);
+//        sendIntentButton.setOnClickListener(this);
+//        Log.e("Intent ",test);
     }
 
     @Override
@@ -50,7 +60,9 @@ public class DetailFragment extends Fragment implements View.OnClickListener
         Bundle args = getArguments();
         if (args != null)
         {
-            updateText((Form)args.getSerializable(KEY));
+            ArrayList<Form> forms = FormUtil.load(getActivity());
+            Form form = forms.get(args.getInt(KEY));
+            updateText(form);
         }
     }
 
@@ -74,7 +86,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener
     {
         Toast.makeText(getActivity(), "Contact Deleted", Toast.LENGTH_LONG).show();
 
-        FormUtil.delete((Form) getArguments().getSerializable(KEY), getActivity());
+        FormUtil.delete(getArguments().getInt(KEY), getActivity());
 
         getActivity().finish();
     }

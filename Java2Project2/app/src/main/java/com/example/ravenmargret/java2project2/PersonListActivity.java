@@ -50,10 +50,10 @@ public class PersonListActivity extends Activity implements View.OnClickListener
     }
 
     @Override
-    public void onFragmentInteraction(Form formObject)
+    public void onFragmentInteraction(int position)
     {
         Bundle extras = new Bundle();
-        extras.putSerializable(DetailActivity.LISTKEY, formObject);
+        extras.putInt(DetailActivity.LISTKEY, position);
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtras(extras);
         startActivityForResult(intent, 80808080);

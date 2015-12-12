@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class DetailActivity extends Activity
 {
     FragmentManager manager;
@@ -28,11 +30,11 @@ public class DetailActivity extends Activity
         showDetailFragment(detailFragment);
 
         Intent callingIntent = getIntent();
-        Form object = (Form)callingIntent.getSerializableExtra(LISTKEY);
+        int object = callingIntent.getIntExtra(LISTKEY, 0);
         setResult(RESULT_OK, callingIntent);
 
         Bundle args = new Bundle();
-        args.putSerializable(DetailFragment.KEY, object);
+        args.putInt(DetailFragment.KEY, object);
         detailFragment.setArguments(args);
     }
 
@@ -41,19 +43,19 @@ public class DetailActivity extends Activity
         manager.beginTransaction().replace(R.id.container, detailFrag).commit();
     }
 
-//    public void sendText(View v)
+//    public void onClick(View v)
 //    {
-//        Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_SEND);
-//        intent.putExtra("",);
-//        intent.putExtra("",);
-//        intent.putExtra("",);
-//        intent.putExtra("",);
-//        intent.setType("text/plain");
+//        Intent sendText = new Intent();
+//        sendText.setAction(Intent.ACTION_SEND);
+//        sendText.putExtra(sendText.EXTRA_TEXT, );
+//        sendText.putExtra("",);
+//        sendText.putExtra("",);
+//        sendText.putExtra("",);
+//        sendText.setType("text/plain");
 //
-//        if (intent.resolveActivity(getPackageManager()) != null)
+//        if (sendText.resolveActivity(getPackageManager()) != null)
 //        {
-//            startActivity(intent);
+//            startActivity(sendText);
 //        }
 //    }
 }

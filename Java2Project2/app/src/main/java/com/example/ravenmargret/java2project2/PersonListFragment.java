@@ -67,9 +67,8 @@ public class PersonListFragment extends ListFragment
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
-//        Form f = (Form) getListAdapter().getItem(position);
         Form f = (Form) l.getAdapter().getItem(position);
-        mListener.onFragmentInteraction(f);
+        mListener.onFragmentInteraction(position);
     }
 
     public void loadData()
@@ -82,6 +81,6 @@ public class PersonListFragment extends ListFragment
     public interface OnFragmentInteractionListener
     {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Form formObject);
+        void onFragmentInteraction(int formObject);
     }
 }
