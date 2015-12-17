@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseSyncer extends SQLiteOpenHelper
 {
     private static final String DATABASE_FILE = "database.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static final String CRUD_TABLE = "Crud";
     public static final String ID = "_id"; //Constants for table and columns

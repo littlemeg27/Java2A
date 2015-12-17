@@ -14,11 +14,11 @@ import android.support.annotation.Nullable;
 
 public class CRUDProvider extends ContentProvider
 {
-    private static final String AUTHORITY = "com.example.ravenmargret.java2project4a.CRUDProvider";
+    private static final String AUTHORITY = "com.example.ravenmargret.java2project3a.CRUDProvider";
     private static final String BASE_DATA = "Crud";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_DATA);
 
-    private static final int CRUD = 2;
+    private static final int CRUD = 3;
     private static final int CRUD_ID = 1;
 
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);

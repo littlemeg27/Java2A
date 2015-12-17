@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class PersonListFragment extends ListFragment
 {
     private OnFragmentInteractionListener mListener;
+    Cursor cursor;
 
     public PersonListFragment()
     {
@@ -53,7 +54,7 @@ public class PersonListFragment extends ListFragment
 
         String[] columns = {Contract.ID, Contract.FIRST_NAME, Contract.LAST_NAME, Contract.JOB, Contract.AGE};
 
-        Cursor cursor = getActivity().getContentResolver().query(Uri.parse(Contract.DATA_SOURCE_URI), columns, null, null, null);
+        cursor = getActivity().getContentResolver().query(Uri.parse(Contract.DATA_SOURCE_URI), columns, null, null, null);
 
         String[] fromDatabase = {Contract.FIRST_NAME};
         int[] setToList = {android.R.id.text1};
@@ -72,12 +73,14 @@ public class PersonListFragment extends ListFragment
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
+        cursor = (Cursor)l.getAdapter().getItem(position);
+        //int cursorID = cursor.getInt(cursor.getColumnIndex(DatabaseSyncer.ID));
         mListener.onFragmentInteraction(position);
     }
 
     public interface OnFragmentInteractionListener
     {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int formObject);
+        void onFragmentInteraction(int cursorID);
     }
 }
