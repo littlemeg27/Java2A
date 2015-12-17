@@ -25,7 +25,7 @@ public class DatabaseSyncer extends SQLiteOpenHelper
                                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                 FIRST_NAME + " TEXT, " +
                                 LAST_NAME + " TEXT, " +
-                                JOB + " TEXT " +
+                                JOB + " TEXT, " +
                                 AGE + " INTEGER )";
 
     public static final String[] ALL = {ID, FIRST_NAME, LAST_NAME, JOB, AGE};

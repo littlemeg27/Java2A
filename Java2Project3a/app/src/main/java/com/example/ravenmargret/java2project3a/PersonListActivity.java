@@ -9,13 +9,14 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
 
-public class PersonListActivity extends Activity implements View.OnClickListener
+public class PersonListActivity extends Activity implements OnClickListener, PersonListFragment.OnFragmentInteractionListener
 {
+
     FragmentManager manager;
-    public static final String KEY = "theKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,13 +30,6 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         showListFragment(listFragment);
 
         findViewById(R.id.addPersonButton).setOnClickListener(this);
-
-        Intent callingIntent = getIntent();
-        ArrayList dataList = callingIntent.getStringArrayListExtra(KEY);
-
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putStringArrayListExtra("dataList", dataList);
-        startActivityForResult(intent, 45454545);
     }
 
     private void showListFragment(Fragment listFrag)
@@ -47,27 +41,23 @@ public class PersonListActivity extends Activity implements View.OnClickListener
     public void onClick(View v)
     {
         Intent nextActivity = new Intent(this, FormActivity.class);
-        startActivityForResult(nextActivity, 27272727);
+        startActivityForResult(nextActivity, 40404040);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        //Refresh list here
-        //Find person list frag call load data to update list
         PersonListFragment fragment = (PersonListFragment) getFragmentManager().findFragmentById(R.id.container);
     }
 
-
-//    @Override
-//    public void onFragmentInteraction(Form formObject)
-//    {
-//        Bundle extras = new Bundle();
-//        extras.putSerializable(DetailActivity.PERSONKEY, formObject);
-//        Intent intent = new Intent(this, DetailActivity.class);
-//        intent.putExtras(extras);
-//        startActivityForResult(intent, 45454545);
-//    }
+    public void onFragmentInteraction(int position)
+    {
+        Bundle extras = new Bundle();
+        extras.putInt(DetailActivity.LISTKEY, position);
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtras(extras);
+        startActivityForResult(intent, 80808080);
+    }
 }
 

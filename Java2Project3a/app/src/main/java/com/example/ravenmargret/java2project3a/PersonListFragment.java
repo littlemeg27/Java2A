@@ -12,16 +12,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class PersonListFragment extends ListFragment
 {
-    //private OnFragmentInteractionListener mListener;
-    ArrayList<String> dataForm = new ArrayList<String>();
+    private OnFragmentInteractionListener mListener;
 
     public PersonListFragment()
     {
@@ -35,7 +36,7 @@ public class PersonListFragment extends ListFragment
 
         try
         {
-            //mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnFragmentInteractionListener) activity;
         }
         catch (ClassCastException e)
         {
@@ -47,6 +48,7 @@ public class PersonListFragment extends ListFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
+        String testing = "";
         super.onActivityCreated(savedInstanceState);
 
         String[] columns = {Contract.ID, Contract.FIRST_NAME, Contract.LAST_NAME, Contract.JOB, Contract.AGE};
@@ -57,25 +59,25 @@ public class PersonListFragment extends ListFragment
         int[] setToList = {android.R.id.text1};
         CursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, fromDatabase, setToList, 0);
         setListAdapter(adapter);
+//        Log.e(Contract.ID, "Test");
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
-        String selectedItem = dataForm.get(position).toString();
-        Log.e("Selected", selectedItem);
-
-        Intent intent = new Intent(getActivity(), PersonListActivity.class);
-        intent.putStringArrayListExtra("dataForm", dataForm);
-        startActivityForResult(intent, 45454545);
-
-
-//        Bundle extras = new Bundle();
-//        extras.putString(DetailActivity.PERSONKEY, );
-//
-//        intent.putExtras(extras);
-//        startActivityForResult(intent, 45454545);
+        mListener.onFragmentInteraction(position);
     }
 
+    public interface OnFragmentInteractionListener
+    {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(int formObject);
+    }
 }

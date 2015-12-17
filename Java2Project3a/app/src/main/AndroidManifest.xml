@@ -2,11 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ravenmargret.java2project3a">
 
+    <uses-permission android:name="com.example.ravenmargret.java2project3a.CRUDProvider.ACCESS_DATA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"></application>
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".FormActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <activity
+            android:name=".PersonListActivity"
+            android:label="@string/title_activity_list" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".DetailActivity" >
+        </activity>
+    </application>
 
 </manifest>

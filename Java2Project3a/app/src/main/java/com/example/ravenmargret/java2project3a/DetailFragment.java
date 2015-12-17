@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class DetailFragment extends Fragment implements View.OnClickListener
 {
@@ -42,36 +44,41 @@ public class DetailFragment extends Fragment implements View.OnClickListener
         deletePersonButton.setOnClickListener(this);
     }
 
-      @Override
-      public void onStart()
-      {
-          super.onStart();
+    @Override
+    public void onStart()
+    {
+        super.onStart();
 
-          Bundle args = getArguments();
-          if (args != null)
-          {
-              // Set article based on argument passed in
-              //updateText((ArrayList)args.getStringArrayList(KEY).toString());
-              //String selectedItem = dataForm.get(position).toString();
-          }
-      }
-
-      public void updateText()
-      {
-        TextView firstNameTextView = (TextView) getActivity().findViewById(R.id.firstTextView);
-          //firstNameTextView.setText();
-
-        TextView lastNameTextView = (TextView) getActivity().findViewById(R.id.lastTextView);
-          //lastNameTextView.setText();
-
-        TextView ageTextView = (TextView) getActivity().findViewById(R.id.ageTextView);
-          //ageTextView.setText();
+        Bundle args = getArguments();
+        if (args != null)
+        {
+//            ArrayList<Form> forms = FormUtil.load(getActivity());
+//            Form form = forms.get(args.getInt(KEY));
+//            updateText(form);
+        }
     }
+
+//    public void updateText(Form object)
+//    {
+//        TextView firstNameText = (TextView) getActivity().findViewById(R.id.firstNameTextView);
+//        firstNameText.setText(object.getmFirstName());
+//
+//        TextView lastNameText = (TextView) getActivity().findViewById(R.id.lastNameTextView);
+//        lastNameText.setText(object.getmLastName());
+//
+//        TextView jobText = (TextView) getActivity().findViewById(R.id.jobTextView);
+//        jobText.setText(object.getmJob());
+//
+//        TextView ageText = (TextView) getActivity().findViewById(R.id.ageTextView);
+//        ageText.setText(object.getmAge());
+//    }
 
     @Override
     public void onClick(View v)
     {
         Toast.makeText(getActivity(), "Contact Deleted", Toast.LENGTH_LONG).show();
+
+        //FormUtil.delete(getArguments().getInt(KEY), getActivity());
 
         getActivity().finish();
     }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DetailActivity extends Activity
 {
     FragmentManager manager;
-    public static final String FORMKEY = "theFormKey";
+    public static final String LISTKEY = "listKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,26 +29,16 @@ public class DetailActivity extends Activity
         showDetailFragment(detailFragment);
 
         Intent callingIntent = getIntent();
-        ArrayList dataList = callingIntent.getStringArrayListExtra(FORMKEY);
+        int object = callingIntent.getIntExtra(LISTKEY, 0);
+        setResult(RESULT_OK, callingIntent);
 
         Bundle args = new Bundle();
-        args.putStringArrayList(DetailFragment.KEY, dataList);
+        args.putInt(DetailFragment.KEY, object);
         detailFragment.setArguments(args);
-
     }
 
     private void showDetailFragment(Fragment detailFrag)
     {
-        manager.beginTransaction().replace(R.id.container1, detailFrag).commit();
-    }
-
-    public void sendText() //Trying to do the send out, not going so well
-    {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("*/*");
-        if (intent.resolveActivity(getPackageManager()) != null)
-        {
-            startActivity(intent);
-        }
+        manager.beginTransaction().replace(R.id.container, detailFrag).commit();
     }
 }

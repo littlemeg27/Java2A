@@ -18,8 +18,8 @@ public class CRUDProvider extends ContentProvider
     private static final String BASE_DATA = "Crud";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_DATA);
 
-    private static final int CRUD = 1;
-    private static final int CRUD_ID = 2;
+    private static final int CRUD = 2;
+    private static final int CRUD_ID = 1;
 
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
 

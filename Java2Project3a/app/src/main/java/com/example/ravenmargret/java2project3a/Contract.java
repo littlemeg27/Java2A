@@ -8,7 +8,7 @@ public final class Contract
 {
 
         // The URI that points to our provider on the device.
-        public static final String CONTENT_URI = "content://com.example.ravenmargret.java2project4a.CRUDProvider/";
+        public static final String CONTENT_URI = "content://com.example.ravenmargret.java2project3a.CRUDProvider/";
 
         // The name of our data source inside the provider.
         public static final String DATA_SOURCE = "Crud";
