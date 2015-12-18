@@ -26,7 +26,6 @@ public class DetailActivity extends Activity
         manager = getFragmentManager();
 
         DetailFragment detailFragment = new DetailFragment();
-        showDetailFragment(detailFragment);
 
         Intent callingIntent = getIntent();
         int object = callingIntent.getIntExtra(LISTKEY, 0);
@@ -35,10 +34,12 @@ public class DetailActivity extends Activity
         Bundle args = new Bundle();
         args.putInt(DetailFragment.KEY, object);
         detailFragment.setArguments(args);
+
+        showDetailFragment(detailFragment);
     }
 
     private void showDetailFragment(Fragment detailFrag)
     {
-        manager.beginTransaction().replace(R.id.container, detailFrag).commit();
+        manager.beginTransaction().replace(R.id.detailContainer, detailFrag).commit();
     }
 }

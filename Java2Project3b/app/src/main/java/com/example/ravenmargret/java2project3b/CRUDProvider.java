@@ -18,7 +18,7 @@ public class CRUDProvider extends ContentProvider
     private static final String BASE_DATA = "Crud";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_DATA);
 
-    private static final int CRUD = 3;
+    private static final int CRUD = 4;
     private static final int CRUD_ID = 1;
 
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -43,7 +43,7 @@ public class CRUDProvider extends ContentProvider
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
-        return database.query(DatabaseSyncer.CRUD_TABLE, DatabaseSyncer.ALL, selection, null, null, null, null);
+        return database.query(DatabaseSyncer.CRUD_TABLE, DatabaseSyncer.ALL, selection, selectionArgs, sortOrder, null, null);
     }
 
     @Nullable

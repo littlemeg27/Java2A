@@ -34,7 +34,7 @@ public class PersonListActivity extends Activity implements OnClickListener, Per
 
     private void showListFragment(Fragment listFrag)
     {
-        manager.beginTransaction().replace(R.id.container, listFrag).commit();
+        manager.beginTransaction().replace(R.id.listContainer, listFrag).commit();
     }
 
     @Override
@@ -48,15 +48,13 @@ public class PersonListActivity extends Activity implements OnClickListener, Per
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        PersonListFragment fragment = (PersonListFragment) getFragmentManager().findFragmentById(R.id.container);
+        PersonListFragment fragment = (PersonListFragment) getFragmentManager().findFragmentById(R.id.listContainer);
     }
 
-    public void onFragmentInteraction(int position)
+    public void onFragmentInteraction(int cursorID)
     {
-        Bundle extras = new Bundle();
-        extras.putInt(DetailActivity.LISTKEY, position);
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtras(extras);
+        intent.putExtra(Contract.ID, cursorID);
         startActivityForResult(intent, 80808080);
     }
 }

@@ -60,12 +60,20 @@ public class PersonListFragment extends ListFragment
         int[] setToList = {android.R.id.text1};
         CursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, fromDatabase, setToList, 0);
         setListAdapter(adapter);
-//        Log.e(Contract.ID, "Test");
     }
 
     @Override
     public void onResume()
     {
+        String[] columns = {Contract.ID, Contract.FIRST_NAME, Contract.LAST_NAME, Contract.JOB, Contract.AGE};
+
+        cursor = getActivity().getContentResolver().query(Uri.parse(Contract.DATA_SOURCE_URI), columns, null, null, null);
+
+        String[] fromDatabase = {Contract.FIRST_NAME};
+        int[] setToList = {android.R.id.text1};
+        CursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, fromDatabase, setToList, 0);
+        setListAdapter(adapter);
+
         super.onResume();
     }
 
@@ -74,8 +82,8 @@ public class PersonListFragment extends ListFragment
     {
         super.onListItemClick(l, v, position, id);
         cursor = (Cursor)l.getAdapter().getItem(position);
-        //int cursorID = cursor.getInt(cursor.getColumnIndex(DatabaseSyncer.ID));
-        mListener.onFragmentInteraction(position);
+        int cursorID = cursor.getInt(cursor.getColumnIndex(Contract.ID));
+        mListener.onFragmentInteraction(cursorID);
     }
 
     public interface OnFragmentInteractionListener

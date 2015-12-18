@@ -6,6 +6,8 @@ package com.example.ravenmargret.java2project3a;
 
 
 import android.app.Fragment;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,16 +54,33 @@ public class DetailFragment extends Fragment implements View.OnClickListener
         Bundle args = getArguments();
         if (args != null)
         {
-//            ArrayList<Form> forms = FormUtil.load(getActivity());
-//            Form form = forms.get(args.getInt(KEY));
-//            updateText(form);
+            String whereClause = Contract.ID + "=?";
+            String[] whereArgs = new String[] { args.getInt(KEY) + "" };
+            String[] columns = {Contract.ID, Contract.FIRST_NAME, Contract.LAST_NAME, Contract.JOB, Contract.AGE};
+            Cursor cursor = getActivity().getContentResolver().query(Uri.parse(Contract.DATA_SOURCE_URI), columns, whereClause, whereArgs, null);
+            String firstName = cursor.getString(cursor.getColumnIndex(Contract.FIRST_NAME));
+            String lastName = cursor.getString(cursor.getColumnIndex(Contract.LAST_NAME));
+            String job = cursor.getString(cursor.getColumnIndex(Contract.JOB));
+            String age = cursor.getString(cursor.getColumnIndex(Contract.AGE));
+
+            TextView firstNameText = (TextView) getActivity().findViewById(R.id.firstNameTextView);
+            firstNameText.setText(firstName);
+
+            TextView lastNameText = (TextView) getActivity().findViewById(R.id.lastNameTextView);
+            lastNameText.setText(lastName);
+
+            TextView jobText = (TextView) getActivity().findViewById(R.id.jobTextView);
+            jobText.setText(job);
+
+            TextView ageText = (TextView) getActivity().findViewById(R.id.ageTextView);
+            ageText.setText(age);
         }
     }
 
-//    public void updateText(Form object)
+//    public void updateText()
 //    {
 //        TextView firstNameText = (TextView) getActivity().findViewById(R.id.firstNameTextView);
-//        firstNameText.setText(object.getmFirstName());
+//        firstNameText.setText(firstName);
 //
 //        TextView lastNameText = (TextView) getActivity().findViewById(R.id.lastNameTextView);
 //        lastNameText.setText(object.getmLastName());
