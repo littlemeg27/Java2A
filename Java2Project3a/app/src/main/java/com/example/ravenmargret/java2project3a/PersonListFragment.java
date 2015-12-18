@@ -83,6 +83,7 @@ public class PersonListFragment extends ListFragment
         super.onListItemClick(l, v, position, id);
         cursor = (Cursor)l.getAdapter().getItem(position);
         int cursorID = cursor.getInt(cursor.getColumnIndex(Contract.ID));
+        Log.i("frag", "onFragmentInteraction: " + cursorID);
         mListener.onFragmentInteraction(cursorID);
     }
 

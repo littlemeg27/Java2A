@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -28,12 +29,15 @@ public class DetailActivity extends Activity
         DetailFragment detailFragment = new DetailFragment();
 
         Intent callingIntent = getIntent();
-        int object = callingIntent.getIntExtra(LISTKEY, 0);
+        int cursorID = callingIntent.getIntExtra(Contract.ID, 0);
+        Log.i("detail", "onFragmentInteraction: " + cursorID);
         setResult(RESULT_OK, callingIntent);
 
         Bundle args = new Bundle();
-        args.putInt(DetailFragment.KEY, object);
+        args.putInt(DetailFragment.KEY, cursorID);
+        Log.i("detail", "onFragmentInteraction: " + cursorID);
         detailFragment.setArguments(args);
+        Log.i("detail", "onFragmentInteraction: " + cursorID);
 
         showDetailFragment(detailFragment);
     }

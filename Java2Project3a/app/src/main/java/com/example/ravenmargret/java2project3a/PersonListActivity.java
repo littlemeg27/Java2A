@@ -8,6 +8,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -55,7 +56,9 @@ public class PersonListActivity extends Activity implements OnClickListener, Per
     {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(Contract.ID, cursorID);
+        Log.i("list", "onFragmentInteraction: " + cursorID);
         startActivityForResult(intent, 80808080);
+        Log.i("list", "onFragmentInteraction: " + cursorID);
     }
 }
 
